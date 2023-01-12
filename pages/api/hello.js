@@ -1,5 +1,12 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import axios from "axios";
 
-export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
-}
+const URL = `http://localhost:8000/product`
+
+export const getProducts = async(event) =>{return await axios.get(URL ) }
+export const getProductById = async(event) =>{return await axios.get(URL+`/${event}` ) }
+export const getSearchProducts = async(event) =>{return await axios.get(URL +`?search=${event}` ) }
+export const addProducts = async(event) =>{return await axios.post(URL ,event) }
+
+const URL2 = `http://localhost:8000/category`
+export const getAllCategory = async(event) =>{return await axios.get(URL2 ) }
+export const addCategory = async(event) =>{return await axios.post(URL2 ,event).then(res => console.log(res.data)) }
